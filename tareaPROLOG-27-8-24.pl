@@ -59,5 +59,7 @@ es_hermana_de(P,Q) :- es_mujer(P), es_progenitor(R,P), es_progenitor(R,Q), P\=Q.
 
 es_primo_de(S,T) :- es_hombre(S), es_progenitor(U,S), es_progenitor(V,T), es_hermano_de(U,V); es_hermana_de(U,V).
 es_prima_de(P1,P2) :- es_mujer(P1), es_progenitor(Q1,P1), es_progenitor(Q2,P2), es_hermano_de(Q1,Q2); es_hermana_de(Q1,Q2).
-es_ancestro_de(A1,D1) :- 
-es_descendiente_de(D2,A2) :- 
+es_ancestro_de(A1,D1) :- es_progenitor(A1,D1).
+es_ancestro_de(A1,D1) :- es_progenitor(A1,D2), es_ancestro(D2,D1).
+es_descendiente_de(B1,C1) :- es_progenitor(C1,B1).
+es_descendiente_de(B1,C1) :- es_progenitor(C2,B1), es_decendiente_de(C2,C1).
